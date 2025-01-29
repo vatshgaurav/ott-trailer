@@ -12,14 +12,30 @@
             background-color: black;
             color: white;
         }
+        .video-container {
+            position: relative;
+            display: inline-block;
+        }
         video {
             width: 80%;
             max-width: 720px;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            pointer-events: none;
+            opacity: 0.8;
         }
         button {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
+            background-color: white;
+            color: black;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -27,15 +43,18 @@
     <h2>Watch the Video Below</h2>
     <p>Take note of the Movie ID displayed below and enter it in the Google Form.</p>
     
-    <video id="videoPlayer" controls></video>
+    <div class="video-container">
+        <video id="videoPlayer" controls></video>
+        <img id="ottLogo" class="logo" src="" alt="OTT Logo">
+    </div>
     <h3 id="movieId"></h3>
     
     <button onclick="playRandomVideo()">Play New Video</button>
     
     <script>
         const intros = [
-            { name: "Netflix", url: "netflix_intro.mp4" },
-            { name: "Amazon Prime", url: "prime_intro.mp4" }
+            { name: "Netflix", url: "netflix_intro.mp4", logo: "netflix_logo.png" },
+            { name: "Amazon Prime", url: "prime_intro.mp4", logo: "prime_logo.png" }
         ];
         
         const trailers = [
@@ -49,8 +68,10 @@
             const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
             const videoPlayer = document.getElementById("videoPlayer");
             const movieIdDisplay = document.getElementById("movieId");
+            const ottLogo = document.getElementById("ottLogo");
             
             movieIdDisplay.innerText = `Movie ID: ${randomTrailer.id} (${randomIntro.name})`;
+            ottLogo.src = randomIntro.logo;
             
             videoPlayer.src = randomIntro.url;
             videoPlayer.play();
