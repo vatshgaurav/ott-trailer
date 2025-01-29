@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTT Jingle & Movie Trailer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: black;
+            color: white;
+        }
+        video {
+            width: 80%;
+            max-width: 720px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Watch the Video Below</h2>
+    <p>Take note of the Movie ID displayed below and enter it in the Google Form.</p>
+    
+    <video id="videoPlayer" controls></video>
+    <h3 id="movieId"></h3>
+    
+    <button onclick="playRandomVideo()">Play New Video</button>
+    
+    <script>
+        const intros = [
+            { name: "Netflix", url: "netflix_intro.mp4" },
+            { name: "Amazon Prime", url: "prime_intro.mp4" }
+        ];
+        
+        const trailers = [
+            { id: "M001", url: "trailer1.mp4" },
+            { id: "M002", url: "trailer2.mp4" },
+            { id: "M003", url: "trailer3.mp4" }
+        ];
+
+        function playRandomVideo() {
+            const randomIntro = intros[Math.floor(Math.random() * intros.length)];
+            const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
+            const videoPlayer = document.getElementById("videoPlayer");
+            const movieIdDisplay = document.getElementById("movieId");
+            
+            movieIdDisplay.innerText = `Movie ID: ${randomTrailer.id} (${randomIntro.name})`;
+            
+            videoPlayer.src = randomIntro.url;
+            videoPlayer.play();
+            
+            videoPlayer.onended = function() {
+                videoPlayer.src = randomTrailer.url;
+                videoPlayer.play();
+            };
+        }
+    </script>
+</body>
+</html>
