@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTT Jingle & Movie Trailer</title>
+    <title>OTT Movie Trailer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,14 +53,24 @@
     
     <script>
         const intros = [
-            { name: "Netflix", url: "netflix_intro.mp4", logo: "netflix_logo.png" },
-            { name: "Amazon Prime", url: "prime_intro.mp4", logo: "prime_logo.png" }
+            { name: "-N", url: "netflix_intro.mp4", logo: "netflix_logo.png" },
+            { name: "-P", url: "prime_intro.mp4", logo: "prime_logo.png" }
         ];
         
         const trailers = [
             { id: "M001", url: "trailer1.mp4" },
             { id: "M002", url: "trailer2.mp4" },
-            { id: "M003", url: "trailer3.mp4" }
+            { id: "M003", url: "trailer3.mp4" },
+            { id: "M004", url: "trailer4.mp4" }, 
+            { id: "M009", url: "trailer9.mp4" },
+            { id: "M010", url: "trailer10.mp4" },
+            { id: "M011", url: "trailer11.mp4" },
+            { id: "M012", url: "trailer12.mp4" },
+            { id: "M013", url: "trailer13.mp4" },
+            { id: "M014", url: "trailer14.mp4" },
+            { id: "M015", url: "trailer15.mp4" },
+            { id: "M016", url: "trailer16.mp4" }
+
         ];
 
         function playRandomVideo() {
@@ -70,7 +80,7 @@
             const movieIdDisplay = document.getElementById("movieId");
             const ottLogo = document.getElementById("ottLogo");
             
-            movieIdDisplay.innerText = `Movie ID: ${randomTrailer.id} (${randomIntro.name})`;
+            movieIdDisplay.innerText = `Movie ID: ${randomTrailer.id}${randomIntro.name}`;
             ottLogo.src = randomIntro.logo;
             
             videoPlayer.src = randomIntro.url;
